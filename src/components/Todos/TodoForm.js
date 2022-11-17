@@ -6,7 +6,6 @@ function TodoForm({ addTodo }) {
 
   function onSubmitHandler(event) {
     event.preventDefault();
-    console.log(text);
     addTodo(text);
     setText('');
   }

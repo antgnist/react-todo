@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 
 import './App.css';
 import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList';
-import { useState } from 'react';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -16,18 +16,30 @@ function App() {
     };
     setTodos([...todos, newTodo]);
   }
-  function deleteTodoHandler(id) {
-    // todos.splice(id, 1);
-    //  let newArr = todos.filter((elem) => elem.id !== id);
 
-    setTodos([...todos.filter((elem) => elem.id !== id)]);
+  function deleteTodoHandler(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
+  function toggleTodoHandler(id) {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? { ...todo, isComplited: !todo.isComplited }
+          : { ...todo }
+      )
+    );
   }
 
   return (
     <div className="App">
       <h1>Todo App</h1>
       <TodoForm addTodo={addTodoHandler} />
-      <TodoList todos={todos} deleteTodo={deleteTodoHandler} />
+      <TodoList
+        todos={todos}
+        deleteTodo={deleteTodoHandler}
+        toggleTodo={toggleTodoHandler}
+      />
     </div>
   );
 }
