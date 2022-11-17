@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { RiTodoFill } from 'react-icons/ri';
 
 import styles from './Todo.module.css';
 
-function Todo({ todo, index, deleteTodo }) {
+function Todo({ todo, isComplited, id, deleteTodo }) {
+  const [complited, setComplited] = useState(isComplited);
   return (
     <div
       onDoubleClick={() => {
-        deleteTodo(index);
+        deleteTodo(id);
       }}
       className={styles.todo}
     >

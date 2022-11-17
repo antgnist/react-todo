@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import './App.css';
 import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList';
@@ -7,11 +9,18 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   function addTodoHandler(text) {
-    setTodos([...todos, text]);
+    const newTodo = {
+      text: text,
+      isComplited: false,
+      id: uuidv4(),
+    };
+    setTodos([...todos, newTodo]);
   }
-  function deleteTodoHandler(index) {
-    todos.splice(index, 1);
-    setTodos([...todos]);
+  function deleteTodoHandler(id) {
+    // todos.splice(id, 1);
+    //  let newArr = todos.filter((elem) => elem.id !== id);
+
+    setTodos([...todos.filter((elem) => elem.id !== id)]);
   }
 
   return (
