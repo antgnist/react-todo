@@ -7,8 +7,10 @@ function TodoForm({ addTodo }) {
 
   function onSubmitHandler(event) {
     event.preventDefault();
-    addTodo(text);
-    setText('');
+    if (text) {
+      addTodo(text);
+      setText('');
+    }
   }
 
   return (
